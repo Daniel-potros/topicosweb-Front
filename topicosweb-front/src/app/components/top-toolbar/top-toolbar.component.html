@@ -1,0 +1,29 @@
+<mat-toolbar class="top-toolbar" fxLayout="row">
+    <span class="nav-tool-items button-row" fxFlex="50%" fxLayout="row" style="justify-content: flex-end;" fxFlexAlign="center">
+      <button color="warn" mat-raised-button
+        *ngIf="buttonRemoveVisibility != 1"
+        (click)="onBtnRemoveClick()"
+        [style.visibility]="getButtonRemoveVisibility()"
+        [disabled]="buttonRemoveVisibility == 2">
+        <mat-icon style="padding-bottom: 4px;">remove</mat-icon>&nbsp;
+        <span>Eliminar</span>
+      </button>
+      <button color="primary" mat-raised-button
+        *ngIf="buttonNewVisibility != 1"
+        (click)="onBtnNewClick()"
+        [style.visibility]="getButtonNewVisibility()"
+        [disabled]="buttonNewVisibility == 2">
+        <mat-icon style="padding-bottom: 4px;">add</mat-icon>&nbsp;
+        <span>Nuevo</span>
+      </button>
+      <button color="primary" mat-raised-button
+        *ngIf="buttonSelectVisibility != 1"
+        (click)="onBtnSelectClick()"
+        [style.visibility]="getButtonSelectVisibility()"
+        [disabled]="buttonSelectVisibility == 2">
+        <mat-icon style="padding-bottom: 4px;">done</mat-icon>&nbsp;
+        <span>Terminar</span>
+      </button>
+    </span>
+  </mat-toolbar> 
+  

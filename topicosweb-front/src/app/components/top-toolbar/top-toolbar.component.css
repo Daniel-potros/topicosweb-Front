@@ -1,0 +1,24 @@
+mat-toolbar.top-toolbar{
+    margin-top: 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    justify-content: space-between;
+    z-index: 2;
+    display: flex;
+}
+  
+
+.clear-icon {
+    color: slategray
+}
+  
+  
+.search-icon{
+    color: slategray
+}
+  
+
+.button-row button, .button-row a {
+    margin-right: 8px
+}
+ 
