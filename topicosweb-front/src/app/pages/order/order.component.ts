@@ -86,7 +86,7 @@ export class OrderComponent implements OnInit {
     try {
       //await this.classifiedsService.removeClassified(id);
       const index = this.ordenes.findIndex(a => a.id === id);
-      this.snackBar.open("Orden eliminada");
+      this.snackBar.open("Orden eliminada", "Cerrar");
       
       if (index >= 0) {
         this.ordenes.splice(index, 1);
@@ -96,7 +96,7 @@ export class OrderComponent implements OnInit {
       }
      
     } catch (error: any) {
-      this.snackBar.open(error);
+      this.snackBar.open(error, "Cerrar");
     }
   }
 
