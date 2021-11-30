@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { EditOrderFormComponent } from 'src/app/components/edit-order-form/edit-order-form.component';
+import { Orden } from 'src/app/models/orden';
+
 
 export interface PeriodicElement {
   name: string;
@@ -8,17 +12,12 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+const ELEMENT_DATA: Orden[] = [
+  {id: '1', mesa: 1, fecha: '11/29/2021', productos: ['Carrots']},
+  {id: '2', mesa: 2, fecha: '11/29/2021', productos: []},
+  {id: '3', mesa: 3, fecha: '11/29/2021', productos: []},
+  {id: '4', mesa: 4, fecha: '11/29/2021', productos: []},
+  {id: '5', mesa: 5, fecha: '11/29/2021', productos: []},
 ];
 
 @Component({
@@ -28,9 +27,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class OrderComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  ordenes: Orden[] = []
+
+  displayedColumns: string[] = ['id', 'mesa', 'fecha'];
   dataSource = ELEMENT_DATA;
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+    ) { }
 
   ngOnInit(): void {
   }
@@ -39,4 +43,33 @@ export class OrderComponent implements OnInit {
   onBtnNewClick() {
     this.router.navigateByUrl('/buy')
   }
+
+  async editOrder(element: Orden): Promise<void> {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = { orden: element };
+
+    const dialogRef = this.dialog.open(EditOrderFormComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(this.updateOrden.bind(this));
+  }
+
+  private async updateOrden(orden: Orden): Promise<void> {
+    if (!orden) {
+      return;
+    }
+
+    try {
+      const index = this.ordenes.findIndex(a => a.id === orden.id);
+      if (index >= 0) {
+        this.ordenes[index] = orden
+        this.ordenes = [...this.ordenes];
+        //this.sortData({ active: this.sortColumn, direction: this.sortDirection });
+      }
+    } catch (error: any) {
+    }
+  }
 }
+

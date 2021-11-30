@@ -22,14 +22,11 @@ export class TopToolbarComponent implements OnInit {
   @Input()
   buttonSelectVisibility: ButtonVisibility = ButtonVisibility.HIDDEN;
 
-  @Input()
-  buttonAdvancedSearchVisibility: ButtonVisibility = ButtonVisibility.HIDDEN;
+  
 
   @Output()
   buttonSearchClick: EventEmitter<string> = new EventEmitter();
 
-  @Output()
-  buttonAdvancedSearchClick: EventEmitter<void> = new EventEmitter();
 
   @Output()
   buttonNewClick: EventEmitter<void> = new EventEmitter();
@@ -72,21 +69,9 @@ export class TopToolbarComponent implements OnInit {
   return 'hidden';
   }
 
-  getButtonAdvancedSearchVisibility(): string {
-    if (this.buttonAdvancedSearchVisibility === ButtonVisibility.VISIBLE ||
-        this.buttonAdvancedSearchVisibility === ButtonVisibility.DISABLED) {
-          return 'visible';
-    }
-    return 'hidden';
-  }
+  
 
-  onBtnSearchClick(): void {
-    this.buttonSearchClick.emit(this.query);
-  }
-
-  onBtnAdvancedSearchClick(): void {
-    this.buttonAdvancedSearchClick.emit();
-  }
+ 
 
   onBtnNewClick(): void {
     this.buttonNewClick.emit();

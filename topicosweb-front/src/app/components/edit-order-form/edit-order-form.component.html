@@ -1,0 +1,74 @@
+<div fxLayout="row">
+    <div fxFlex="50%" fxFlexAlign="center" fxLayout="row">
+      <h2>
+        Editar orden
+      </h2>
+    </div>
+    <div fxFlex="50%" fxLayout="row" style="justify-content: flex-end; padding-bottom: 10px;" fxFlexAlign="center">
+      <span matSuffix class="pointer" (click)="close()">
+        <mat-icon >close</mat-icon>
+      </span>
+    </div>
+  </div>
+  
+  <form #orderEditForm="ngForm" class="order-edit-form"  (ngSubmit)="register(orderEditForm.form)">
+    <mat-dialog-content fxLayout="column">
+      <div fxLayout="row">
+        
+        <mat-form-field fxFlex="75%" appearance="fill">
+          <mat-label>Mesa: </mat-label>
+          <input matInput
+            required
+            type="text"
+            maxlength="100"
+            name="mesa"
+            [(ngModel)]="orden.mesa" />
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha: </mat-label>
+        <input matInput 
+          required
+          maxlength="200"
+          type="text"
+          name="fecha"
+          [(ngModel)]="orden.fecha" />
+      </mat-form-field>
+
+      <div cdkDropListGroup>
+        <div class="example-container">
+          <h2>Available items</h2>
+      
+          <div
+            cdkDropList
+            [cdkDropListData]="items"
+            class="example-list"
+            cdkDropListSortingDisabled
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of items" cdkDrag>{{item}}</div>
+          </div>
+        </div>
+      
+        <div class="example-container">
+          <h2>Shopping basket</h2>
+      
+          <div
+            cdkDropList
+            [cdkDropListData]="basket"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of basket" cdkDrag>{{item}}</div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block"
+        type="submit">
+        Enviar
+      </button>
+    </mat-dialog-actions>
+  </form>

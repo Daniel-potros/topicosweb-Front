@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 import { BuyComponent } from './pages/buy/buy.component';
+import { EditOrderFormComponent } from './components/edit-order-form/edit-order-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BuyComponent } from './pages/buy/buy.component';
     OrderComponent,
     SettingsComponent,
     TopToolbarComponent,
-    BuyComponent
+    BuyComponent,
+    EditOrderFormComponent
   ],
   imports: [
     AngularMaterialModule,

@@ -34,7 +34,7 @@ const routes: Routes = [
   {
     path: 'buy',
     component: BuyComponent
-  }
+  },
 ];
 
 @NgModule({

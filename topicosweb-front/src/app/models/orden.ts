@@ -1,10 +1,13 @@
 export class Orden {
-    idOrden: String
-    
-    fecha: Date
+    id: String
+    mesa: number
+    fecha: string
+    productos: string[]
 
     constructor() {
-        this.idOrden = ''
-        this.fecha = new Date
+        this.id = ''
+        this.mesa = 0
+        this.fecha = ''
+        this.productos = []
     }
 }
