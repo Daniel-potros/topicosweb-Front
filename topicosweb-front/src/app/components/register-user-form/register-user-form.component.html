@@ -1,0 +1,48 @@
+<div fxLayout="row">
+    <div fxFlex="50%" fxFlexAlign="center" fxLayout="row">
+      <h2>
+        Registrar usuario
+      </h2>
+    </div>
+    <div fxFlex="50%" fxLayout="row" style="justify-content: flex-end; padding-bottom: 10px;" fxFlexAlign="center">
+      <span matSuffix class="pointer" (click)="close()">
+        <mat-icon >close</mat-icon>
+      </span>
+    </div>
+  </div>
+  
+  <form #userRegisterForm="ngForm" class="user-register-form"  (ngSubmit)="register(userRegisterForm.form)">
+    <mat-dialog-content fxLayout="column">
+      <div fxLayout="row">
+        
+        <mat-form-field fxFlex="75%" appearance="fill">
+          <mat-label>Nombre de usuario: </mat-label>
+          <input matInput
+            required
+            type="text"
+            maxlength="100"
+            name="username"
+            [(ngModel)]="usuario.username" />
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Contraseña: </mat-label>
+        <input matInput 
+          required
+          maxlength="200"
+          type="password"
+          name="password"
+          [(ngModel)]="usuario.password" />
+      </mat-form-field>
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        class="btn-block"
+        type="submit">
+        Enviar
+      </button>
+    </mat-dialog-actions>
+  </form>

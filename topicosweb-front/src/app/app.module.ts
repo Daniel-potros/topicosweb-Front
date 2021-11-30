@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 import { BuyComponent } from './pages/buy/buy.component';
 import { EditOrderFormComponent } from './components/edit-order-form/edit-order-form.component';
+import { RegisterUserFormComponent } from './components/register-user-form/register-user-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EditOrderFormComponent } from './components/edit-order-form/edit-order-
     SettingsComponent,
     TopToolbarComponent,
     BuyComponent,
-    EditOrderFormComponent
+    EditOrderFormComponent,
+    RegisterUserFormComponent
   ],
   imports: [
     AngularMaterialModule,

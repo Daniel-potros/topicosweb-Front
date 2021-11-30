@@ -1,5 +1,11 @@
-export interface Usuario {
+export class Usuario {
     id: String
     username: String
-    contraseña: String
+    password: String
+
+    constructor() {
+        this.id = ''
+        this.username = ''
+        this.password = ''
+    }
 }
