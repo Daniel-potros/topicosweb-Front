@@ -1,5 +1,5 @@
 export class Orden {
-    id: String
+    id: string
     mesa: number
     fecha: string
     productos: string[]

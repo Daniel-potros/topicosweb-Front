@@ -3,6 +3,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { EditOrderFormComponent } from 'src/app/components/edit-order-form/edit-order-form.component';
 import { Orden } from 'src/app/models/orden';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { Sort, SortDirection } from '@angular/material/sort';
 
 
 export interface PeriodicElement {
@@ -26,14 +28,18 @@ const ELEMENT_DATA: Orden[] = [
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+  durationInSeconds = 5;
+  private sortColumn: string = 'id';
+  private sortDirection: SortDirection = 'desc';
 
-  ordenes: Orden[] = []
+  ordenes: Orden[] = ELEMENT_DATA
 
-  displayedColumns: string[] = ['id', 'mesa', 'fecha'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['id', 'mesa', 'fecha','actions'];
+  dataSource = this.ordenes;
   constructor(
     private router: Router,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -70,6 +76,54 @@ export class OrderComponent implements OnInit {
       }
     } catch (error: any) {
     }
+  }
+
+  remove(orden: Orden) {
+    this.removeOrden(orden.id)
+  }
+
+  private async removeOrden(id: string): Promise<void> {
+    try {
+      //await this.classifiedsService.removeClassified(id);
+      const index = this.ordenes.findIndex(a => a.id === id);
+      this.snackBar.open("Orden eliminada");
+      
+      if (index >= 0) {
+        this.ordenes.splice(index, 1);
+        this.ordenes = [...this.ordenes];
+        this.sortData({ active: this.sortColumn, direction: this.sortDirection });
+        this.dataSource = this.ordenes
+      }
+     
+    } catch (error: any) {
+      this.snackBar.open(error);
+    }
+  }
+
+  sortData(ev: Sort): void {
+    const data = this.ordenes.slice();
+    if (!ev.active || ev.direction === '') {
+      this.ordenes = data;
+      return;
+    }
+
+    this.sortColumn = ev.active;
+    this.sortDirection = ev.direction;
+
+    const sortFn = (a: string | number, b: string | number, isAsc: boolean): number => {
+      return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    };
+
+    const isAsc = ev.direction === 'asc';
+
+    this.ordenes = data.sort((a: Orden, b: Orden) => {
+      switch (ev.active) {
+        case 'id' : return sortFn(a.id, b.id, isAsc);
+        //case 'pubdate' : return sortFn(a.publicationDate, b.publicationDate, isAsc);
+
+        default: return 0;
+      }
+    });
   }
 }
 
