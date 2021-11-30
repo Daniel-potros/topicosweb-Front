@@ -30,8 +30,8 @@ export class BuyComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  register(categoryRegisterForm: FormGroup): void {
-  
+  register(buyForm: FormGroup): void {
+    
   }
 
 }

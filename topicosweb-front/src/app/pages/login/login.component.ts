@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   email: string = '';
   password: string = '';
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -21,8 +22,7 @@ export class LoginComponent implements OnInit {
     try {
       const {  email, password } = loginForm.value;
       this.password = '';
-     
-      // this.authService.loginWithPhone(phone, this.captcha);
+      this.router.navigateByUrl('/home')
     } catch (err: any) {
       const keys = [
         `ERRORS.${err!.code}`,

@@ -1,1 +1,16 @@
+<p>
+  <mat-toolbar color="primary">
+    <button mat-button [routerLink]="['/home']" routerLinkActive="router-link-active" >TakeOrd</button>
+    <div class="menu-buttons"> 
+      <span class="example-spacer"></span>
+      <button mat-button class="ordenes-button" [routerLink]="['/order']" routerLinkActive="router-link-active"  >
+        Ordenes
+      </button>
+      <button mat-button class="empleados-button" [routerLink]="['/empleados']" routerLinkActive="router-link-active"  >
+        Empleados
+      </button>
+    </div>
+    
+  </mat-toolbar>
+</p>
 <router-outlet></router-outlet>

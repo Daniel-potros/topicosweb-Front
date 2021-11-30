@@ -1,0 +1,13 @@
+.example-spacer {
+    flex: auto;
+  }
+
+.menu-buttons {
+    margin-right: 15%;
+    margin-left: auto;
+}
+
+.ordenes-button {
+    margin-right: 100px;
+}
+
